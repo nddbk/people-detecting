@@ -18,7 +18,7 @@ python start.py
 
 ### Methods
 
-- [Simple way using accumulateWeighted](https://github.com/ndaidong/people-detecting/tree/accumulateWeighted)
+- [accumulateWeighted](https://github.com/ndaidong/people-detecting/tree/accumulateWeighted)
 - [Pedestrian Detection](https://github.com/ndaidong/people-detecting/tree/Pedestrian)
 - [Follow movement](https://github.com/ndaidong/people-detecting/tree/FollowMovement)
 
