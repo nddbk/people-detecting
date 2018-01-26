@@ -14,10 +14,10 @@ avg = None
 while(cap.isOpened()):
     ret, frame = cap.read()
 
-    if ret == False:
+    if ret is False:
         break
-    
-    k = cv2.waitKey(30) 
+
+    k = cv2.waitKey(30)
     if k == 27:
         break
 
@@ -27,13 +27,17 @@ while(cap.isOpened()):
     if avg is None:
         avg = gray.copy().astype("float")
         continue
-    
+
     cv2.accumulateWeighted(gray, avg, 0.1)
     frameDelta = cv2.absdiff(gray, cv2.convertScaleAbs(avg))
     cv2.imshow('Frame', frameDelta)
     thresh = cv2.threshold(frameDelta, 25, 255, cv2.THRESH_BINARY)[1]
     thresh = cv2.dilate(thresh, None, iterations=2)
-    _, contours, _ = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    _, contours, _ = cv2.findContours(
+        thresh.copy(),
+        cv2.RETR_EXTERNAL,
+        cv2.CHAIN_APPROX_SIMPLE
+    )
 
     people_detected = 0
 
@@ -46,8 +50,17 @@ while(cap.isOpened()):
         people_detected += 1
 
     text = 'People detected: ' + str(people_detected)
-    cv2.putText(frame, text, (mx, my), font, 1, (255, 255, 255), 1, cv2.LINE_AA) 
-    cv2.imshow('Frame',frame)
+    cv2.putText(
+        frame,
+        text,
+        (mx, my),
+        font,
+        1,
+        (255, 255, 255),
+        1,
+        cv2.LINE_AA
+    )
+    cv2.imshow('Frame', frame)
 
 cap.release()
 cv2.destroyAllWindows()

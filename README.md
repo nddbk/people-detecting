@@ -27,4 +27,4 @@ python start.py
 
 ## Think
 
-This method is fast, but the accuracy is quite low.
+This method is simple and fast, of course, the accuracy is quite low.
