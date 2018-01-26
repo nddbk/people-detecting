@@ -19,7 +19,7 @@ python start.py
 
 ## How
 
-- This approach uses a pre-trained Histogram of Oriented Gradients (HOG) and Linear Support Vector Machine (SVM) model shipped with OpenCV. [Adrian Rosebrock](https://twitter.com/pyimagesearch) had written about this in his article "[Pedestrian Detection OpenCV](https://www.pyimagesearch.com/2015/11/09/pedestrian-detection-opencv/)".
+- This approach make use of the pre-trained Histogram of Oriented Gradients (HOG) and Linear Support Vector Machine (SVM) model shipped with OpenCV. [Adrian Rosebrock](https://twitter.com/pyimagesearch) had written about this in his article "[Pedestrian Detection OpenCV](https://www.pyimagesearch.com/2015/11/09/pedestrian-detection-opencv/)".
 
 
 ## Think
