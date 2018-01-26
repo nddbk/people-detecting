@@ -19,7 +19,7 @@ python start.py
 
 ## How
 
-- Approach by Fede as he described here "[People Counter with OpenCV Python](https://www.femb.com.mx/people-counter/people-counter-with-opencv-python/)". This is almost standard process for implementing a People Counter system, including background substraction, filtering, finding contours, and the most important step is following the movement.
+- I got this method at Fede's blog article "[People Counter with OpenCV Python](https://www.femb.com.mx/people-counter/people-counter-with-opencv-python/)". It felt that it's near to a standard process of building People Counter system, including background substraction, filtering, finding contours, and the most important step is following the movements.
 
 
 ## Think
