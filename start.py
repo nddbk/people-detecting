@@ -1,11 +1,6 @@
 import numpy as np
-from imutils.object_detection import non_max_suppression
 import cv2
-
-hog = cv2.HOGDescriptor()
-hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
-
-font = cv2.FONT_HERSHEY_SIMPLEX
+import Person
 
 cap = cv2.VideoCapture('vtest.avi')
 
@@ -14,46 +9,111 @@ h = cap.get(4)
 mx = int(w - 400)
 my = int(h - 24)
 
+areaTH = 500
+count = 0
+
+fgbg = cv2.createBackgroundSubtractorMOG2(detectShadows=True)
+kernelOp = np.ones((15, 15), np.uint8)
+kernelCl = np.ones((1, 1), np.uint8)
+
+
+max_p_age = 5
+pid = 1
+font = cv2.FONT_HERSHEY_SIMPLEX
+
 while(cap.isOpened()):
     ret, frame = cap.read()
 
     if ret is False:
         break
-    
-    k = cv2.waitKey(30) 
+
+    k = cv2.waitKey(30)
     if k == 27:
+            break
+
+    fgmask = fgbg.apply(frame)
+    people = []
+    try:
+
+        ret, thresh1 = cv2.threshold(fgmask, 200, 255, cv2.THRESH_BINARY)
+
+        mask = cv2.morphologyEx(thresh1, cv2.MORPH_OPEN, kernelOp)
+        mask = cv2.morphologyEx(thresh1, cv2.MORPH_CLOSE, kernelCl)
+
+    except IOError as e:
+        print('IO Error:')
+        print(e)
+        print('EOF')
         break
 
-    rects, weights = hog.detectMultiScale(
-        frame,
-        winStride=(4, 4), 
-        padding=(8, 8), 
-        scale=1.05
+    except ValueError as e:
+        print('Value error:')
+        print(e)
+        print('EOF')
+        break
+
+    _, contour0, hierachy = cv2.findContours(
+        mask,
+        cv2.RETR_EXTERNAL,
+        cv2.CHAIN_APPROX_NONE
     )
-    for (x, y, w, h) in rects:
-        cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 2)
+    for cnt in contour0:
+        area = cv2.contourArea(cnt)
+        if area > areaTH:
+            M = cv2.moments(cnt)
+            cx = int(M['m10'] / M['m00'])
+            cy = int(M['m01'] / M['m00'])
+            x, y, w, h = cv2.boundingRect(cnt)
 
-    rects = np.array([[x, y, x + w, y + h] for (x, y, w, h) in rects])
-    pick = non_max_suppression(rects, probs=None, overlapThresh=0.65)
-    
-    people_detected = 0
-    
-    for (xA, yA, xB, yB) in pick:
-        people_detected += 1
-        cv2.rectangle(frame, (xA, yA), (xB, yB), (0, 255, 0), 2)
+            new = True
+            for i in people:
+                if abs(x - i.getX()) <= w and abs(y - i.getY()) <= h:
+                    new = False
+                    i.updateCoords(cx, cy)
+                    break
+            if new is True:
+                p = Person.MyPerson(pid, cx, cy, max_p_age)
+                people.append(p)
+                pid += 1
 
-    text = 'People detected: ' + str(people_detected)
+            cv2.circle(frame, (cx, cy), 5, (0, 0, 255), -1)
+            img = cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+
+    for i in people:
+        if len(i.getTracks()) >= 2:
+            pts = np.array(i.getTracks(), np.int32)
+            pts = pts.reshape((-1, 1, 2))
+            frame = cv2.polylines(frame, [pts], False, i.getRGB())
+        if i.getId() == 9:
+            print(str(i.getX()), ',', str(i.getY()))
+        cv2.putText(
+            frame,
+            str(i.getId()),
+            (i.getX(), i.getY()),
+            font,
+            0.3,
+            i.getRGB(),
+            1,
+            cv2.LINE_AA
+        )
+
+    count = len(people)
+    text = 'People detected: ' + str(count)
     cv2.putText(
-        frame, 
-        text, 
-        (mx, my), 
-        font, 
-        1, 
-        (255, 255, 255), 
-        1, 
+        frame,
+        text,
+        (mx, my),
+        font,
+        1,
+        (255, 255, 255),
+        1,
         cv2.LINE_AA
     )
     cv2.imshow('Frame', frame)
+
+    k = cv2.waitKey(30) & 0xff
+    if k == 27:
+        break
 
 cap.release()
 cv2.destroyAllWindows()
