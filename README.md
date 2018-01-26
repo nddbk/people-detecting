@@ -2,7 +2,7 @@
 Detect people from video/camera using OpenCV
 
 
-# What
+## What
 
 
 ```
@@ -17,7 +17,7 @@ pip install -r requirements.txt
 python start.py
 ```
 
-# How
+## How
 
 - Use [cvtColor](https://docs.opencv.org/3.2.0/d7/d1b/group__imgproc__misc.html#ga397ae87e1288a81d2363b61574eb8cab) & [GaussianBlur](https://docs.opencv.org/3.1.0/d4/d86/group__imgproc__filter.html#gaabe8c836e97159a9193fb0b11ac52cf1) to create gray version of frame.
 - Use [accumulateWeighted](https://docs.opencv.org/2.4/modules/imgproc/doc/motion_analysis_and_object_tracking.html#accumulateweighted) to analyze the motions.
@@ -25,5 +25,6 @@ python start.py
 - Use [findContours](https://docs.opencv.org/3.1.0/d3/dc0/group__imgproc__shape.html#ga17ed9f5d79ae97bd4c7cf18403e1689a) to estimate the objects. 
 
 
+## Think
 
 This method is fast, but the accuracy is quite low.
