@@ -19,9 +19,9 @@ python start.py
 
 ## How
 
-- This approach make use of the pre-trained Histogram of Oriented Gradients (HOG) and Linear Support Vector Machine (SVM) model shipped with OpenCV. [Adrian Rosebrock](https://twitter.com/pyimagesearch) had written about this in his article "[Pedestrian Detection OpenCV](https://www.pyimagesearch.com/2015/11/09/pedestrian-detection-opencv/)".
+- Approach by Fede as he described here "[People Counter with OpenCV Python](https://www.femb.com.mx/people-counter/people-counter-with-opencv-python/)". This is almost standard process for implementing a People Counter system, including background substraction, filtering, finding contours, and the most important step is following the movement.
 
 
 ## Think
 
-This method is quite good, can be improved for better result. But it consumes a big amount of CPU and very slow in regular dev environment. It maybe good if we process with GPU.
+The result is quite accurate, easy to scale up, with an acceptable performance.
