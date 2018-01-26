@@ -14,3 +14,13 @@ pip install -r requirements.txt
 
 python start.py
 ```
+
+
+### Methods
+
+- [Simple way using accumulateWeighted](https://github.com/ndaidong/people-detecting/tree/accumulateWeighted)
+- [Pedestrian Detection](https://github.com/ndaidong/people-detecting/tree/Pedestrian)
+
+
+
+*(continuous)*
