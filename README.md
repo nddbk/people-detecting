@@ -8,8 +8,9 @@ git clone https://github.com/ndaidong/people-detecting.git
 cd people-detecting
 git checkout BRANCH
 
-virtualenv --python=python3 --system-site-packages venv
+python3 -m venv venv
 source venv/bin/activate
+
 pip install -r requirements.txt
 
 python start.py
