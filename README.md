@@ -25,7 +25,8 @@ python start.py
 
 ## How
 
-- In this branch, we try to use [YOLO](https://pjreddie.com/darknet/yolo/) with [darknet](https://pjreddie.com/darknet/) for TensorFlow via [a fork](https://github.com/bendidi/darkflow) of [darkflow](https://github.com/thtrieu/darkflow).
+- In this branch, we learn from [Tracking-with-darkflow](https://github.com/bendidi/Tracking-with-darkflow) to use [YOLO](https://pjreddie.com/darknet/yolo/) with [darknet](https://pjreddie.com/darknet/) for TensorFlow via [a fork](https://github.com/bendidi/darkflow) of [darkflow](https://github.com/thtrieu/darkflow).
+
 
 
 ## Think
