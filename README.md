@@ -22,7 +22,8 @@ python start.py
 - [accumulateWeighted](https://github.com/ndaidong/people-detecting/tree/accumulateWeighted)
 - [Pedestrian Detection](https://github.com/ndaidong/people-detecting/tree/Pedestrian)
 - [Follow movement](https://github.com/ndaidong/people-detecting/tree/FollowMovement)
+- [YOLO](https://github.com/ndaidong/people-detecting/tree/YOLO)
 
 *(continuous)*
 
-- YOLO
+
