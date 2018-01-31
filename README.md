@@ -20,6 +20,12 @@ source venv/bin/activate
 
 pip install -r requirements.txt
 
+# setup darkflow
+cd darkflow
+python setup.py build_ext --inplace
+# back to root
+cd ..
+
 python start.py
 ```
 
