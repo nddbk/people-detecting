@@ -25,5 +25,4 @@ python start.py
 
 *(continuous)*
 
-- DarknetYolo
-- TensorFlowYolo
+- YOLO
