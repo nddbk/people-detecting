@@ -23,5 +23,7 @@ python start.py
 - [Pedestrian Detection](https://github.com/ndaidong/people-detecting/tree/Pedestrian)
 - [Follow movement](https://github.com/ndaidong/people-detecting/tree/FollowMovement)
 
-
 *(continuous)*
+
+- DarknetYolo
+- TensorFlowYolo
