@@ -6,16 +6,24 @@ Detect people from video/camera using OpenCV
 
 
 ```
+export YOLO_PATH=/ABSOLUTE/PATH/TO/YOLO/WEIGHTS/FILE
+
+git clone https://github.com/thtrieu/darkflow.git
 git clone https://github.com/ndaidong/people-detecting.git
 cd people-detecting
-git checkout Pedestrian
+git checkout TensorFlow
 
 python3 -m venv venv
 source venv/bin/activate
 
-pip install -r requirements.txt
+(venv) pip install -r requirements.txt
 
-python start.py
+(venv) cd ../darkflow
+(venv) pip install .
+(venv) cp -R cfg ../people-detecting
+cd ../people-detecting
+
+flow --model cfg/yolo.cfg --load YOLO_PATH --labels labels.txt --demo vtest.avi --saveVideo --gpu 1.0
 ```
 
 ## How
